@@ -114,7 +114,7 @@ const MasonryGrid = <T,>({
         duration: 0.5,
         ease: 'easeOut',
       },
-    },
+    } as any,
   };
 
   return (

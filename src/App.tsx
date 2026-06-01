@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, ArrowRight, Check, Image as ImageIcon, Ruler, PenTool, Layout, Box, Clock } from 'lucide-react';
