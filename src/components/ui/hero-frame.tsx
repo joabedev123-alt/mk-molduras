@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
-const cornerVariants = {
+const cornerVariants: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
   visible: { 
     pathLength: 1, 
@@ -12,7 +12,7 @@ const cornerVariants = {
   }
 };
 
-const lineVariantsX = {
+const lineVariantsX: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
   visible: { 
     scaleX: 1, 
@@ -24,7 +24,7 @@ const lineVariantsX = {
   }
 };
 
-const lineVariantsY = {
+const lineVariantsY: Variants = {
   hidden: { scaleY: 0, opacity: 0 },
   visible: { 
     scaleY: 1, 

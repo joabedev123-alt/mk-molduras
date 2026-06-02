@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { MapPin, Phone, ArrowRight, Check, Image as ImageIcon, Ruler, PenTool, Layout, Box, Clock } from 'lucide-react';
+import { MapPin, Phone, ArrowRight, Check } from 'lucide-react';
 import { HeroFrame } from '@/components/ui/hero-frame';
 
 const allImages = [
