@@ -61,7 +61,7 @@ export const HeroFrame = ({ color = "#C7A27A" }: { color?: string }) => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="absolute inset-4 md:inset-8 z-20 pointer-events-none"
+      className="absolute inset-2 md:inset-8 z-20 pointer-events-none"
     >
       {/* Corners */}
       <Corner className="top-0 left-0" color={color} />

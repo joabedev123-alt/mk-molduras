@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'fra
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, ArrowRight, Check } from 'lucide-react';
 import { HeroFrame } from '@/components/ui/hero-frame';
+import { InfiniteCarousel } from '@/components/ui/infinite-carousel';
 
 const allImages = [
   '/helton10/WhatsApp Image 2026-06-01 at 18.44.34.jpeg',
@@ -21,7 +22,6 @@ const allImages = [
   '/helton10/WhatsApp Image 2026-06-01 at 18.44.43 (1).jpeg',
   '/helton10/WhatsApp Image 2026-06-01 at 18.44.43 (2).jpeg',
   '/helton10/WhatsApp Image 2026-06-01 at 18.44.43.jpeg',
-  '/helton10/WhatsApp Image 2026-06-01 at 18.44.44 (1).jpeg',
   '/helton10/WhatsApp Image 2026-06-01 at 18.44.44 (2).jpeg',
   '/helton10/WhatsApp Image 2026-06-01 at 18.44.44.jpeg',
   '/helton10/helton1.jpeg',
@@ -37,55 +37,7 @@ const allImages = [
 
 const wallGalleryImages = allImages;
 
-const WallGallery = ({ images }: { images: string[] }) => {
-  const Frame = ({ src, className }: { src: string, className?: string }) => (
-    <div className={`bg-zinc-900 border-[2px] sm:border-[4px] md:border-[12px] border-[#111] shadow-xl md:shadow-2xl overflow-hidden relative group cursor-pointer transition-all duration-500 hover:border-[#C7A27A] hover:shadow-[0_0_25px_rgba(199,162,122,0.3)] ${className}`}>
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors z-10 duration-500 pointer-events-none" />
-      <img src={src} className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-    </div>
-  );
 
-  const chunks = [];
-  for (let i = 0; i < images.length; i += 12) {
-    if (images.slice(i, i + 12).length === 12) {
-      chunks.push(images.slice(i, i + 12));
-    }
-  }
-
-  return (
-    <div className="flex flex-col gap-12 md:gap-32 w-full">
-      {chunks.map((chunk, idx) => (
-        <div key={idx} className="flex flex-col items-center gap-2 md:gap-8 max-w-6xl mx-auto w-full px-1 sm:px-2 md:px-4">
-          {/* Top Row */}
-          <div className="flex w-full gap-1 sm:gap-2 md:gap-8">
-            <Frame src={chunk[0]} className="flex-1 aspect-[21/30]" />
-            <Frame src={chunk[1]} className="flex-1 aspect-[21/30]" />
-            <Frame src={chunk[2]} className="flex-1 aspect-[21/30]" />
-            <Frame src={chunk[3]} className="flex-1 aspect-[21/30]" />
-          </div>
-          
-          {/* Middle Row */}
-          <div className="flex w-full gap-1 sm:gap-2 md:gap-8">
-            <Frame src={chunk[4]} className="flex-[42] aspect-[42/30]" />
-            <div className="flex-[15] flex flex-col justify-center gap-1 sm:gap-2 md:gap-8">
-              <Frame src={chunk[5]} className="w-full aspect-[15/10]" />
-              <Frame src={chunk[6]} className="w-full aspect-[15/10]" />
-            </div>
-            <Frame src={chunk[7]} className="flex-[42] aspect-[42/30]" />
-          </div>
-
-          {/* Bottom Row */}
-          <div className="flex w-full gap-1 sm:gap-2 md:gap-8">
-            <Frame src={chunk[8]} className="flex-1 aspect-[21/30]" />
-            <Frame src={chunk[9]} className="flex-1 aspect-[21/30]" />
-            <Frame src={chunk[10]} className="flex-1 aspect-[21/30]" />
-            <Frame src={chunk[11]} className="flex-1 aspect-[21/30]" />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
 
 const AnimatedNumber = ({ end, label }: { end: string, label: string }) => {
   const ref = useRef(null);
@@ -135,16 +87,8 @@ const ProcessStep = ({ number, title, desc, delay }: { number: string, title: st
 
 import { BsPen, BsRulers, BsImage, BsPrinter, BsShieldCheck, BsWrench, BsPersonWorkspace, BsBriefcase } from 'react-icons/bs';
 
-const frameStyles = [
-  { borderWidth: '20px', borderStyle: 'ridge', borderColor: '#C5A059', boxShadow: 'inset 0 0 0 6px #5c4316, inset 0 0 15px rgba(0,0,0,0.9), 0 15px 30px rgba(0,0,0,0.8)', backgroundColor: '#0a0a0a' }, // Classic Ornate Gold
-  { borderWidth: '24px', borderStyle: 'inset', borderColor: '#3E2011', boxShadow: 'inset 0 0 0 8px #C5A059, inset 0 0 20px rgba(0,0,0,0.9), 0 15px 30px rgba(0,0,0,0.8)', backgroundColor: '#0a0a0a' }, // Wide Dark Wood with Gold Lip
-  { borderWidth: '18px', borderStyle: 'groove', borderColor: '#A99B86', boxShadow: 'inset 0 0 0 4px #4a4133, inset 0 0 15px rgba(0,0,0,0.9), 0 15px 30px rgba(0,0,0,0.8)', backgroundColor: '#0a0a0a' }, // Antique Bronze/Champagne
-  { borderWidth: '22px', borderStyle: 'outset', borderColor: '#4A1515', boxShadow: 'inset 0 0 0 5px #1a0808, inset 0 0 20px rgba(0,0,0,0.9), 0 15px 30px rgba(0,0,0,0.8)', backgroundColor: '#0a0a0a' }, // Sloped Mahogany
-  { borderWidth: '16px', borderStyle: 'double', borderColor: '#DAA520', boxShadow: 'inset 0 0 0 4px #8B6508, inset 0 0 15px rgba(0,0,0,0.9), 0 15px 30px rgba(0,0,0,0.8)', backgroundColor: '#0a0a0a' }, // Classic Double Gold
-  { borderWidth: '18px', borderStyle: 'solid', borderColor: '#111', boxShadow: 'inset 0 0 0 8px #C5A059, inset 0 0 0 12px #111, inset 0 0 15px rgba(0,0,0,0.9), 0 15px 30px rgba(0,0,0,0.8)', backgroundColor: '#0a0a0a' }, // Black & Gold Step Frame
-  { borderWidth: '20px', borderStyle: 'ridge', borderColor: '#8B5A2B', boxShadow: 'inset 0 0 0 6px #3E2011, inset 0 0 15px rgba(0,0,0,0.9), 0 15px 30px rgba(0,0,0,0.8)', backgroundColor: '#0a0a0a' }, // Light Ornate Wood
-  { borderWidth: '24px', borderStyle: 'groove', borderColor: '#221815', boxShadow: 'inset 0 0 0 6px #A9A9A9, inset 0 0 20px rgba(0,0,0,0.9), 0 15px 30px rgba(0,0,0,0.8)', backgroundColor: '#0a0a0a' }  // Dark Espresso with Silver Lip
-];
+const modernFrame = { borderWidth: '8px', borderStyle: 'solid', borderColor: '#1a1a1a', boxShadow: 'inset 0 0 0 1px #333, inset 0 4px 15px rgba(0,0,0,0.4), 0 10px 25px rgba(0,0,0,0.5)', backgroundColor: '#0a0a0a' };
+const frameStyles = Array(8).fill(modernFrame);
 
 const ServiceCard = ({ title, icon: Icon, delay, frameStyle }: { title: string, icon: any, delay: number, frameStyle: React.CSSProperties }) => {
   const ref = useRef(null);
@@ -206,7 +150,7 @@ function App() {
       <div className="min-h-screen bg-background font-sans overflow-x-hidden selection:bg-secondary/30">
       
       {/* HERO SECTION */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#121212]">
+      <section className="relative min-h-[100dvh] py-24 md:py-0 flex items-center justify-center overflow-hidden bg-[#121212]">
         <HeroFrame />
         <motion.div 
           style={{ y: y1 }}
@@ -224,14 +168,14 @@ function App() {
 
         <motion.div 
           style={{ opacity, y: y2 }}
-          className="relative z-20 text-center px-4 max-w-4xl mx-auto -mt-8"
+          className="relative z-20 text-center px-12 sm:px-16 md:px-24 max-w-4xl mx-auto mt-8 md:-mt-8"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-[#F5F2EB] mb-6 tracking-tight leading-tight text-shadow-lg">
+            <h1 className="text-3xl md:text-6xl lg:text-7xl font-light text-[#F5F2EB] mb-6 tracking-tight leading-tight text-shadow-lg">
               Molduras que valorizam <span className="italic font-serif text-[#C7A27A]">histórias</span>, obras e memórias.
             </h1>
           </motion.div>
@@ -240,7 +184,7 @@ function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="text-lg md:text-xl text-[#F5F2EB] mb-10 font-normal leading-relaxed max-w-2xl mx-auto drop-shadow-md"
+            className="text-base md:text-xl text-[#F5F2EB] mb-10 font-normal leading-relaxed max-w-2xl mx-auto drop-shadow-md"
           >
             Unimos a maestria da produção artesanal à conservação de nível museológico. Um acabamento premium desenvolvido para valorizar e eternizar suas obras de arte, fotografias e projetos decorativos.
           </motion.p>
@@ -254,11 +198,11 @@ function App() {
             <Button 
               size="lg" 
               onClick={() => window.open('https://wa.me/5511982973236?text=Olá,%20gostaria%20de%20falar%20com%20um%20especialista%20da%20MK%20Molduras.', '_blank')}
-              className="bg-[#C7A27A] hover:bg-[#9B7A55] text-[#121212] rounded-sm px-8 py-6 text-base tracking-wide uppercase transition-all shadow-xl group w-full sm:w-auto"
+              className="bg-[#C7A27A] hover:bg-[#9B7A55] text-[#121212] rounded-sm px-6 py-5 md:px-8 md:py-6 text-sm md:text-base tracking-wide uppercase transition-all shadow-xl group w-full sm:w-auto"
             >
-              <Phone className="mr-2 w-4 h-4" />
+              <Phone className="mr-2 w-4 h-4 md:w-5 md:h-5" />
               Falar com um Especialista
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </motion.div>
@@ -276,7 +220,7 @@ function App() {
               className="relative aspect-[4/5] w-full max-w-sm mx-auto lg:max-w-sm overflow-hidden shadow-2xl border border-white/10 rounded-sm"
             >
               <img 
-                src="/helton10/WhatsApp Image 2026-06-01 at 18.44.44 (1).jpeg" 
+                src="/helton10/heroprincipal.jpeg" 
                 alt="Detalhe de Moldura" 
                 className="w-full h-full object-cover hover:scale-105 transition-all duration-700"
               />
@@ -328,7 +272,7 @@ function App() {
             <ServiceCard title="Conservação Preventiva" icon={BsShieldCheck} delay={0.5} frameStyle={frameStyles[4]} />
             <ServiceCard title="Montagem Técnica" icon={BsWrench} delay={0.6} frameStyle={frameStyles[5]} />
             <ServiceCard title="Instalação Profissional" icon={BsPersonWorkspace} delay={0.7} frameStyle={frameStyles[6]} />
-            <ServiceCard title="Projetos Corporativo" icon={BsBriefcase} delay={0.8} frameStyle={frameStyles[7]} />
+            <ServiceCard title="Projetos Corporativos" icon={BsBriefcase} delay={0.8} frameStyle={frameStyles[7]} />
           </div>
 
           <motion.div 
@@ -354,7 +298,7 @@ function App() {
       {/* PROCESSO */}
       <section className="py-24 md:py-32 bg-background border-y border-border relative overflow-hidden">
         <HeroFrame color="#ffffff" />
-        <div className="container mx-auto px-4 md:px-8 relative z-10">
+        <div className="container mx-auto px-10 sm:px-16 md:px-24 relative z-10">
           <div className="mb-16 md:mb-24">
             <h2 className="text-3xl md:text-5xl font-light text-foreground mb-4">Nossa Metodologia</h2>
             <p className="text-muted-foreground text-lg">Do projeto à instalação, cuidado em cada etapa.</p>
@@ -373,15 +317,13 @@ function App() {
       {/* GALERIA */}
       <section className="py-24 md:py-32 bg-[#121212] text-[#F5F2EB] overflow-hidden">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 gap-8">
-            <div>
-              <h2 className="text-3xl md:text-5xl font-light mb-4">Acervo & Projetos</h2>
-              <p className="text-[#D9D6D0] font-light text-lg">Veja algumas de nossas molduras ganhando vida em quadros expostos e obras finalizadas.</p>
-            </div>
+          <div className="text-center mb-16 md:mb-24">
+            <h2 className="text-3xl md:text-5xl font-light mb-4">Acervo & Projetos</h2>
+            <p className="text-[#D9D6D0] font-light text-lg max-w-2xl mx-auto">Veja algumas de nossas molduras ganhando vida em quadros expostos e obras finalizadas.</p>
           </div>
         </div>
         <div className="pt-8 w-full max-w-[100vw] overflow-hidden">
-          <WallGallery images={wallGalleryImages} />
+          <InfiniteCarousel images={wallGalleryImages} direction="left" speed={100} />
         </div>
       </section>
 
