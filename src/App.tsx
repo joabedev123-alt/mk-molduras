@@ -33,7 +33,7 @@ const AnimatedNumber = ({ end, label }: { end: string, label: string }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="text-5xl md:text-6xl font-bold"
+        className="text-4xl sm:text-5xl md:text-6xl font-bold"
         style={{ color: '#0a0a0a' }}
       >
         {end}
@@ -234,7 +234,7 @@ function App() {
                 </div>
               </motion.div>
 
-              <div className="grid grid-cols-3 gap-4 md:gap-10 border-t pt-8 md:pt-10" style={{ borderColor: '#C7A27A40' }}>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-10 border-t pt-8 md:pt-10" style={{ borderColor: '#C7A27A40' }}>
                 <AnimatedNumber end="100%" label="Sob Medida" />
                 <AnimatedNumber end="∞" label="Atendimento Personalizado" />
                 <AnimatedNumber end="10 mil" label="Projetos Entregues" />
@@ -346,7 +346,7 @@ function App() {
       </section>
 
       {/* CTA — fundo ESCURO */}
-      <section className="relative py-20 md:py-32 overflow-hidden" style={{ backgroundColor: '#121212' }}>
+      <section className="relative py-20 md:py-32 overflow-hidden" style={{ backgroundColor: '#214725' }}>
         <div className="absolute inset-0 bg-[url('/frames-bg.png')] bg-cover bg-center opacity-10 mix-blend-overlay" />
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div
