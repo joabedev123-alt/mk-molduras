@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { MapPin, Phone, ArrowRight, Check } from 'lucide-react';
 import { HeroFrame } from '@/components/ui/hero-frame';
@@ -98,14 +98,7 @@ const ServiceCard = ({ title, icon: Icon, delay, frameStyle }: { title: string, 
 }
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
 
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
@@ -114,25 +107,7 @@ function App() {
 
   return (
     <>
-      <AnimatePresence>
-        {showSplash && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-white"
-          >
-            <motion.img
-              initial={{ scale: 0.3, opacity: 0, rotate: -180 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{ duration: 1.5, ease: "circOut" }}
-              src="/helton logo.jpeg"
-              alt="MK Molduras Logo"
-              className="w-72 md:w-[400px] object-contain"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
       <div className="min-h-screen bg-background font-sans overflow-x-hidden selection:bg-secondary/30">
       
